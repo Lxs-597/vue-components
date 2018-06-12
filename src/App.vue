@@ -6,8 +6,20 @@
 </template>
 
 <script>
+import http from './utils/request'
+import axios from 'axios'
+
 export default {
-  name: 'App'
+  name: 'App',
+  created() {
+    http.get('/test/testget').then(
+      res => console.log(res.data)
+    )
+
+    http.post('/test/testpost', {name: 'testname', pwd: '123'}).then(
+      res => console.log(res.data)
+    )
+  }
 }
 </script>
 
