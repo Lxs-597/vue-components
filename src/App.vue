@@ -8,17 +8,20 @@
 <script>
 import http from './utils/request'
 import axios from 'axios'
+import { formatDate } from './utils/formatDate'
 
 export default {
   name: 'App',
   created() {
-    http.get('/test/testget').then(
-      res => console.log(res.data)
-    )
+    // http.get('/test/testget').then(
+    //   res => console.log(res.data)
+    // )
 
-    http.post('/test/testpost', {name: 'testname', pwd: '123'}).then(
-      res => console.log(res.data)
-    )
+    // http.post('/test/testpost', {name: 'testname', pwd: '123'}).then(
+    //   res => console.log(res.data)
+    // )
+
+    console.log(formatDate(Date.now()))
   }
 }
 </script>
