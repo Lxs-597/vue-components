@@ -1,5 +1,5 @@
 import ScrollDemo from 'views/ScrollDemo'
-import Index from 'views/Index'
+import Index from 'views/index'
 
 export default [
   {
