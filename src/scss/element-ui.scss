@@ -1,0 +1,7 @@
+// scrollbar
+.scrollbar-container {
+  overflow-x: hidden !important;
+  .el-scrollbar__view {
+    height: 100%;
+  }
+}
