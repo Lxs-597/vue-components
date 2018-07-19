@@ -32,7 +32,7 @@ export default {
       top: $navHeight;
       bottom: 0;
       width: $sidebar-width;
-      box-shadow: 4px 0px 5px 0px $shadow-dark, 1px 0px 10px -2px $shadow-light;
+      box-shadow: 1px 0px 15px 0px $shadow-dark, 0px 0px 10px -1px $shadow-light;
     }
   }
 </style>
