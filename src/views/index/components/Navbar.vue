@@ -18,8 +18,8 @@ export default {
     top: 0;
     z-index: 9;
     width: 100%;
-    height: $navHeight;
-    line-height: $navHeight;
+    height: $nav-height;
+    line-height: $nav-height;
     color: $color-white;
     background: $color-theme-d;
     padding: 0 24px;
