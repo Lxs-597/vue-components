@@ -1,12 +1,21 @@
 <template>
   <nav class="nav">
+    <hamburger :toggle-click="toggleHumbergerClick" class="hamburger-container"></hamburger>
     <h1 class="title">Vue Component Collection</h1>
   </nav>
 </template>
 
 <script>
+import Hamburger from '@/components/Hamburger'
+
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  components: { Hamburger },
+  methods: {
+    toggleHumbergerClick() {
+      console.log('click')
+    }
+  }
 }
 </script>
 
@@ -27,6 +36,12 @@ export default {
     .title {
       font-size: 24px;
       color: $color-theme;
+    }
+    .hamburger-container {
+      line-height: 82px;
+      height: 68px;
+      float: left;
+      padding: 0 10px 0 0;
     }
   }
 </style>
