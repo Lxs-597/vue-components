@@ -1,6 +1,6 @@
 <template>
   <nav class="nav">
-    <hamburger :toggle-click="toggleHumbergerClick" class="hamburger-container"></hamburger>
+    <hamburger :toggle-click="toggleHumbergerClick" :is-active="isOpened" class="hamburger-container"></hamburger>
     <h1 class="title">Vue Component Collection</h1>
   </nav>
 </template>
@@ -11,16 +11,22 @@ import Hamburger from '@/components/Hamburger'
 export default {
   name: 'Navbar',
   components: { Hamburger },
+  computed: {
+    isOpened() {
+      return this.$store.getters.sidebar.isOpened
+    }
+  },
   methods: {
     toggleHumbergerClick() {
       console.log('click')
+      this.$store.dispatch('toggleSidebar')
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/scss/variable.scss';
+@import '~scss/variable.scss';
   .nav {
     position: absolute;
     left: 0;

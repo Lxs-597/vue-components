@@ -1,18 +1,27 @@
 import ScrollDemo from 'views/ScrollDemo'
-import Index from 'views/index/Index'
+import Layout from 'views/Layout'
 
 export default [
   {
     path: '/',
-    redirect: '/index'
+    component: Layout,
+    redirect: '/home',
+    children: [
+      {
+        path: 'home',
+        component: () => import('views/Home')
+      }
+    ]
   },
   {
-    path: '/index',
-    component: Index
-  },
-  {
-    path: '/scrolldemo',
-    name: 'ScrollDemo',
-    component: ScrollDemo
+    path: '/mobile',
+    component: Layout,
+    redirect: '/mobile/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/ScrollDemo')
+      }
+    ]
   }
 ]

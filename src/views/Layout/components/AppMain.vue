@@ -1,5 +1,5 @@
 <template>
-  <section class="app-main">
+  <section class="app-main" :class="{'sidebar-closed': !isOpened}">
     <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
@@ -8,7 +8,12 @@
 
 <script>
 export default {
-  name: 'AppMain'
+  name: 'AppMain',
+  computed: {
+    isOpened() {
+      return this.$store.getters.sidebar.isOpened
+    }
+  }
 }
 </script>
 
@@ -16,8 +21,14 @@ export default {
 @import '~scss/variable.scss';
 
 .app-main {
+  height: 100%;
   min-height: calc(100vh - #{$nav-height});
   position: relative;
   overflow: hidden;
+  margin-left: $sidebar-width;
+  transition: margin-left .28s;
+  &.sidebar-closed {
+    margin-left: 68px;
+  }
 }
 </style>

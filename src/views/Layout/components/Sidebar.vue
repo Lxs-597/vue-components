@@ -3,6 +3,9 @@
     <el-menu
       default-active="2"
       class="menu-container"
+      mode="vertical"
+      :collapse="!isOpened"
+      :unique-opened="true"
       @open="handleOpen"
       @close="handleClose"
       background-color="#616161"
@@ -34,6 +37,11 @@
 <script>
 export default {
   name: 'Sidebar',
+  computed: {
+    isOpened() {
+      return this.$store.getters.sidebar.isOpened
+    }
+  },
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
