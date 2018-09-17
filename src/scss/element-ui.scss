@@ -1,3 +1,5 @@
+@import './variable.scss';
+
 // scrollbar
 .scrollbar-container {
   overflow-x: hidden !important;
@@ -7,4 +9,9 @@
   .horizontal-collapse-transition {
     transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
   }
+}
+
+// breadcrumb
+.el-breadcrumb__inner.is-link:hover {
+  color: #97a8be;
 }

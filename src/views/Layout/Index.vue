@@ -3,22 +3,38 @@
     <navbar></navbar>
     <section class="main-wrapper">
       <sidebar class="sidebar-wrapper" :class="{'closed': !sidebar.isOpened}"></sidebar>
-      <app-main></app-main>
+      <app-main>
+        <section slot="header" class="main-header">
+          <hamburger :toggle-click="toggleHumbergerClick" :is-active="isOpened" class="hamburger-container"></hamburger>
+          <breadcrumb slot="header"></breadcrumb>
+        </section>
+      </app-main>
     </section>
   </section>
 </template>
 
 <script>
 import { AppMain, Navbar, Sidebar } from './components'
+import Breadcrumb from '@/components/Breadcrumb'
+import Hamburger from '@/components/Hamburger'
 import { mapGetters } from 'vuex'
 import ResizeMixin from '@/mixins/resize'
 
 export default {
   name: 'Layout',
-  components: { AppMain, Navbar, Sidebar },
+  components: { AppMain, Navbar, Sidebar, Breadcrumb, Hamburger },
   mixins: [ResizeMixin],
   computed: {
-    ...mapGetters(['device', 'sidebar'])
+    ...mapGetters(['device', 'sidebar']),
+    isOpened() {
+      return this.sidebar.isOpened
+    }
+  },
+  methods: {
+    toggleHumbergerClick() {
+      console.log('click')
+      this.$store.dispatch('toggleSidebar')
+    }
   }
 }
 </script>
@@ -51,6 +67,15 @@ export default {
       width: 100%;
       height: 100%;
       min-height: calc(100vh - #{$nav-height});
+      .main-header {
+        border: solid 1px #e6e6e6;
+        .hamburger-container {
+          line-height: 60px;
+          height: 40px;
+          float: left;
+          padding: 0 10px;
+        }
+      }
     }
   }
 </style>

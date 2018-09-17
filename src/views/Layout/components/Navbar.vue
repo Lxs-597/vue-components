@@ -1,6 +1,5 @@
 <template>
   <nav class="nav">
-    <hamburger :toggle-click="toggleHumbergerClick" :is-active="isOpened" class="hamburger-container"></hamburger>
     <h1 class="title">Vue Component Collection</h1>
   </nav>
 </template>
@@ -42,12 +41,6 @@ export default {
     .title {
       font-size: 24px;
       color: $color-theme;
-    }
-    .hamburger-container {
-      line-height: 82px;
-      height: 68px;
-      float: left;
-      padding: 0 10px 0 0;
     }
   }
 </style>

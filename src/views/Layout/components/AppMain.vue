@@ -1,5 +1,6 @@
 <template>
   <section class="app-main" :class="{'sidebar-closed': !isOpened}">
+    <slot name="header"></slot>
     <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
