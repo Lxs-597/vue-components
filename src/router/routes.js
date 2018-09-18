@@ -70,6 +70,7 @@ export default [
   },
   {
     path: '/mobile',
+    name: 'Mobile',
     component: Layout,
     redirect: '/mobile/index',
     children: [
@@ -78,5 +79,11 @@ export default [
         component: () => import('views/ScrollDemo')
       }
     ]
+  },
+  {
+    path: '/a',
+    component: {
+      template: '<router-view></router-view>'
+    }
   }
 ]

@@ -4,6 +4,7 @@
       default-active="4"
       class="menu-container"
       mode="vertical"
+      router
       :collapse="!isOpened"
       :unique-opened="true"
       background-color="#616161"

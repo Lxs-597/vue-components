@@ -1,4 +1,8 @@
+import Item from './Item'
+
 const MenuItem = {
+  name: 'MenuItem',
+  components: { Item },
   props: {
     basePath: {
       type: String,
@@ -10,9 +14,14 @@ const MenuItem = {
     }
   },
   render() {
-    console.log(this)
+    const route = this.route
+    const showMenu = !route.hidden && route.children
     return (
-      <span style={{ color: '#fff' }}>{ this.basePath }</span>
+      showMenu && (
+        <el-menu-item index={route.path} route={{ path: route.path }}>
+            <Item icon="el-icon-menu" title={route.name}></Item>
+        </el-menu-item>
+      )
     )
   }
 }
