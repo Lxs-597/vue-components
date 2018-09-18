@@ -32,7 +32,6 @@ export default {
   },
   methods: {
     toggleHumbergerClick() {
-      console.log('click')
       this.$store.dispatch('toggleSidebar')
     }
   },
