@@ -35,7 +35,7 @@ export default {
       console.log('click')
       this.$store.dispatch('toggleSidebar')
     }
-  }
+  },
 }
 </script>
 

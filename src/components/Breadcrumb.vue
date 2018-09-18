@@ -1,11 +1,11 @@
 <template>
   <el-breadcrumb separator-class="el-icon-arrow-right">
     <transition-group name="breadcrumb">
-      <template v-for="(item, index) in crumbs" v-if="item.meta.title">
+      <template v-for="item in crumbs" v-if="item.meta.title">
         <el-breadcrumb-item
           :key="item.path"
-          :to="{path: item.redirect || item.path}"
-          :class="{'no-redirect': index === crumbs.length - 1}">
+          :to="{path: item.redirect == undefined ? null : item.redirect || item.path}"
+          :class="{'no-redirect': !item.redirect}">
             {{ item.meta.title }}
         </el-breadcrumb-item>
       </template>
@@ -24,8 +24,8 @@ export default {
     getCrumbs() {
       let matched = this.$route.matched.filter(item => item.name)
       const first = matched[0]
-      if (first) {
-        matched = [{ path: '/home', meta: { title: '首页' } }, ...matched]
+      if (first && first.name !== 'Home') {
+        matched = [{ path: '/home', redirect: '/home', meta: { title: '首页' } }, ...matched]
       }
       this.crumbs = matched
     }
@@ -50,14 +50,5 @@ export default {
   height: 40px;
   line-height: 46px;
   margin-left: 10px;
-  .el-breadcrumb__inner {
-    color: $color-theme-d;
-    font-weight: bolder;
-    cursor: pointer;
-    &.no-redirect {
-      color: #97a8be;
-      cursor: text;
-    }
-  }
 }
 </style>
