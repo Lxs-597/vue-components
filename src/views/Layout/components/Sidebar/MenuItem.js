@@ -24,12 +24,9 @@ const MenuItem = {
     const showMenu = !route.hidden && route.children
     let vnodes = null
 
-    // console.log(route)
-
     if (showMenu) {
       const showMenuItem = this.hasOnlyOneChild(route.children) && !this.onlyChild.children
       if (showMenuItem) {
-        console.log(this.basePath)
         console.info('onlyChild', this.onlyChild)
         vnodes = (
           <el-menu-item index={this.resolvePath(this.onlyChild.path)} route={{ path: this.resolvePath(this.onlyChild.path) }}>
@@ -69,7 +66,6 @@ const MenuItem = {
   },
   methods: {
     resolvePath(routePath) {
-      // console.log(this.route.name, path.resolve(this.basePath, routePath))
       return path.resolve(this.basePath, routePath)
     },
     hasOnlyOneChild(children) {

@@ -1,7 +1,4 @@
-import ScrollDemo from 'views/ScrollDemo'
 import Layout from 'views/Layout'
-
-// console.log(ScrollDemo.__proto__ === Vue.prototype.__proto__)
 
 const createWrap = () => ({ template: '<router-view/>' })
 
@@ -50,7 +47,7 @@ export default [
         path: 'page2-1',
         name: 'Page2-1',
         meta: { title: '页面2-1' },
-        component: () => import('views/Page2/Page2-1'),
+        component: createWrap(),
         children: [
           {
             path: 'page2-1-1',
