@@ -1,7 +1,7 @@
 <template>
   <el-scrollbar wrapClass="scrollbar-container">
     <el-menu
-      default-active="4"
+      :default-active="$route.path"
       class="menu-container"
       mode="vertical"
       router
@@ -35,6 +35,7 @@ export default {
 
   },
   mounted() {
+    console.log(this.$route)
     console.log(this.$router.options.routes)
   }
 }

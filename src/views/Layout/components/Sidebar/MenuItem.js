@@ -1,3 +1,4 @@
+import path from 'path'
 import Item from './Item'
 
 const MenuItem = {
@@ -13,16 +14,71 @@ const MenuItem = {
       required: true
     }
   },
+  data() {
+    return {
+      onlyChild: null
+    }
+  },
   render() {
     const route = this.route
     const showMenu = !route.hidden && route.children
-    return (
-      showMenu && (
-        <el-menu-item index={route.path} route={{ path: route.path }}>
-            <Item icon="el-icon-menu" title={route.name}></Item>
-        </el-menu-item>
-      )
-    )
+    let vnodes = null
+
+    // console.log(route)
+
+    if (showMenu) {
+      const showMenuItem = this.hasOnlyOneChild(route.children) && !this.onlyChild.children
+      if (showMenuItem) {
+        console.log(this.basePath)
+        console.info('onlyChild', this.onlyChild)
+        vnodes = (
+          <el-menu-item index={this.resolvePath(this.onlyChild.path)} route={{ path: this.resolvePath(this.onlyChild.path) }}>
+            <Item icon="el-icon-menu" title={route.meta.title}></Item>
+          </el-menu-item>
+        )
+      } else {
+        vnodes = (
+          <el-submenu index={route.name || route.path}>
+            <template slot="title">
+              <Item icon="el-icon-menu" title={route.meta.title}></Item>
+            </template>
+
+            { !route.hidden && route.children.map(child => (
+              (child.children && child.children.length)
+                ? (
+                    <menu-item
+                      route={child}
+                      basePath={this.resolvePath(child.path)}
+                      key={this.resolvePath(child.path)}/>
+                  )
+                : (
+                    <el-menu-item
+                      index={this.resolvePath(child.path)}
+                      route={{ path: this.resolvePath(child.path) }}
+                      key={this.resolvePath(child.path)}>
+                      <Item icon="el-icon-menu" title={child.meta.title}></Item>
+                    </el-menu-item>
+                  )
+            )) }
+
+          </el-submenu>
+        )
+      }
+    }
+    return vnodes
+  },
+  methods: {
+    resolvePath(routePath) {
+      // console.log(this.route.name, path.resolve(this.basePath, routePath))
+      return path.resolve(this.basePath, routePath)
+    },
+    hasOnlyOneChild(children) {
+      const showsChildren = children.filter(child => {
+        return !child.hidden && (this.onlyChild = child)
+      })
+
+      return showsChildren.length === 1
+    }
   }
 }
 
