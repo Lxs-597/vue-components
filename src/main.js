@@ -10,7 +10,19 @@ import 'element-ui/lib/theme-chalk/index.css'
 // import './config/element'
 import './scss/index.scss'
 
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
 Vue.use(ElementUI)
+
+router.beforeEach((to, from , next) => {
+  NProgress.start()
+  next()
+})
+
+router.afterEach(() => {
+  NProgress.done()
+})
 
 Vue.config.productionTip = false
 
