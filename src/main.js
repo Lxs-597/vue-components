@@ -13,7 +13,10 @@ import './scss/index.scss'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
+import Notify from 'components/Notify'
+
 Vue.use(ElementUI)
+Vue.use(Notify)
 
 router.beforeEach((to, from , next) => {
   NProgress.start()

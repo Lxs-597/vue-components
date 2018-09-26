@@ -64,6 +64,12 @@ a {
   backface-visibility: hidden;
 }
 
+button {
+  outline: none;
+  border: 0;
+  background: transparent;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
