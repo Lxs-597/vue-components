@@ -49,9 +49,7 @@ export default {
   },
   methods: {
     _initScroll() {
-      if (!this.$refs.wrapper) {
-        return
-      }
+      if (!this.$refs.wrapper) return
 
       // 初始化
       this.scroll = new BScroll(this.$refs.wrapper, {
@@ -66,7 +64,7 @@ export default {
 
       // 是否派发滚动事件
       if (this.listenScroll) {
-        this.scroll.on('scroll', (pos) => {
+        this.scroll.on('scroll', pos => {
           this.$emit('scroll', pos)
         })
       }
@@ -131,20 +129,13 @@ export default {
     }
   },
   mounted() {
-    this.$nextTick(() => {
-      this._initScroll()
-    })
+    this.$nextTick(this._initScroll)
   },
   watch: {
     data() {
       // 监听数据变化并重新计算
-      this.$nextTick(() => {
-        this.refresh()
-      })
+      this.$nextTick(this.refresh)
     }
   }
 }
 </script>
-
-<style>
-</style>
