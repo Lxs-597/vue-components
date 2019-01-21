@@ -100,12 +100,6 @@ class HttpRequest {
   }
 }
 
-const request = new Proxy(HttpRequest, {
-  get(Target, key, receiver) {
-    const instance = new Target()
-
-    return Reflect.get(instance, key, receiver)
-  }
-})
+const request = Reflect.construct(HttpRequest)
 
 export default request
