@@ -94,5 +94,9 @@ export default [
     component: {
       template: '<div>template</div>'
     }
+  },
+  {
+    path: '/components/Index',
+    component: () => import('components/Index')
   }
 ]
